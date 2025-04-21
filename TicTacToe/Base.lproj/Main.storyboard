@@ -131,27 +131,56 @@
                                     <constraint firstAttribute="width" secondItem="iBT-lR-ISd" secondAttribute="height" multiplier="1:1" id="M7W-1B-EFi"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Turn:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afv-hP-Olw">
-                                <rect key="frame" x="193" y="118" width="55" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="55" translatesAutoresizingMaskIntoConstraints="NO" id="Afv-hP-Olw">
+                                <rect key="frame" x="192.66666666666666" y="59.999999999999993" width="55" height="28.666666666666664"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9s-vY-hQn">
-                                <rect key="frame" x="185" y="155" width="71" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9s-vY-hQn">
+                                <rect key="frame" x="198.66666666666666" y="98.666666666666657" width="43" height="71.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="60"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e82-Ov-wZK">
+                                <rect key="frame" x="357.33333333333331" y="60" width="52.666666666666686" height="34.333333333333343"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Info">
+                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="tapInfoButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jDg-cY-wwy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNs-e1-jzr">
+                                <rect key="frame" x="35" y="60" width="60.333333333333343" height="35.666666666666657"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Quit">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
+                                    <color key="baseForegroundColor" red="0.91976243260000001" green="0.011259747549999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="baseBackgroundColor" red="0.91976243257522583" green="0.011259747554064637" blue="0.0" alpha="0.32825786564625853" colorSpace="custom" customColorSpace="displayP3"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="theyGottaBeJoking:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bHb-32-WHJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="p9s-vY-hQn" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1Hr-JC-TzP"/>
                             <constraint firstItem="iBT-lR-ISd" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="G3d-Gh-kLM"/>
+                            <constraint firstItem="p9s-vY-hQn" firstAttribute="top" secondItem="Afv-hP-Olw" secondAttribute="bottom" constant="10" id="SZO-C1-y83"/>
+                            <constraint firstItem="p9s-vY-hQn" firstAttribute="top" secondItem="Afv-hP-Olw" secondAttribute="bottom" constant="10" id="TCa-Yf-NJh"/>
+                            <constraint firstItem="ZNs-e1-jzr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="35" id="VUL-jk-QLk"/>
+                            <constraint firstItem="Afv-hP-Olw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="fEk-BJ-uf9"/>
+                            <constraint firstItem="Afv-hP-Olw" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="60" id="iSC-6i-mlE"/>
                             <constraint firstItem="iBT-lR-ISd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="jWB-qZ-aPL"/>
+                            <constraint firstItem="e82-Ov-wZK" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="60" id="tgU-EQ-vAK"/>
                             <constraint firstItem="iBT-lR-ISd" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="tv2-Y3-fUB"/>
+                            <constraint firstAttribute="trailing" secondItem="e82-Ov-wZK" secondAttribute="trailing" constant="30" id="tzX-Ce-hrL"/>
+                            <constraint firstItem="ZNs-e1-jzr" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="60" id="vOz-mX-Xag"/>
                         </constraints>
                     </view>
                     <connections>
@@ -169,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="304.58015267175574" y="0.70422535211267612"/>
+            <point key="canvasLocation" x="304.09090909090912" y="0.62761506276150625"/>
         </scene>
     </scenes>
     <resources>

@@ -56,8 +56,26 @@ class ViewController: UIViewController {
         }
     }
 
+    @IBAction func tapInfoButton(_ sender: UIButton) {
+        let ac = UIAlertController(title: "Information", message: "This is a Tic-Tac-Toe game. The game is played with X and O symbols. The first player to get three in a row wins!\n\nDeveloped by FPS team", preferredStyle: .alert)
+            
+        // Add a close button
+        ac.addAction(UIAlertAction(title: "Thanks for wonderful game!", style: .default, handler: nil))
+        
+        // Present the alert
+        present(ac, animated: true)
+    }
+    @IBAction func theyGottaBeJoking(_ sender: UIButton) {
+        let ac = UIAlertController(title: "You wanna quit?", message: "You can't just quit, you can't just give up, okay? You gotta fight for it, till the end! Actually, there is no end.", preferredStyle: .alert)
+            
+        // Add a close button
+        ac.addAction(UIAlertAction(title: "I'm not going to give up", style: .default, handler: nil))
+        
+        // Present the alert
+        present(ac, animated: true)
+    }
     func resultAlert(title: String) {
-        let ac = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        let ac = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: { _ in
             self.resetBoard()
         }))
@@ -138,12 +156,14 @@ class ViewController: UIViewController {
 
         if currentTurn == .Nought {
             sender.setTitle(NOUGHT, for: .normal)
+            sender.setTitleColor(.red, for: .normal)
             sender.setTitleColor(.red, for: .disabled)
             currentTurn = .Cross
             turnLabel.text = CROSS
             turnLabel.textColor = .black
         } else {
             sender.setTitle(CROSS, for: .normal)
+            sender.setTitleColor(.black, for: .normal)
             sender.setTitleColor(.black, for: .disabled)
             currentTurn = .Nought
             turnLabel.text = NOUGHT
