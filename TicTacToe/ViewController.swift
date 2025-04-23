@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         if noughtWinButtons != nil {
             drawWinningLine(over: noughtWinButtons!, for: NOUGHT)
             noughtsScore += 1
-            resultAlert(title: "Noughts Win!\nScore: Noughts - \(noughtsScore), Crosses - \(crossesScore)")
+            resultAlert(title: "Noughts Win!\n\nScore:\nNoughts - \(noughtsScore)\nCrosses - \(crossesScore)")
             return
         }
 
@@ -69,12 +69,12 @@ class ViewController: UIViewController {
         if crossWinButtons != nil {
             drawWinningLine(over: crossWinButtons!, for: CROSS)
             crossesScore += 1
-            resultAlert(title: "Crosses Win!\nScore: Noughts - \(noughtsScore), Crosses - \(crossesScore)")
+            resultAlert(title: "Crosses Win!\n\nScore:\nNoughts - \(noughtsScore)\nCrosses - \(crossesScore)")
             return
         }
 
         if isFullBoard() {
-            resultAlert(title: "Draw\nScore: Noughts - \(noughtsScore), Crosses - \(crossesScore)")
+            resultAlert(title: "Draw\n\nScore:\nNoughts - \(noughtsScore)\nCrosses - \(crossesScore)")
         }
     }
 
