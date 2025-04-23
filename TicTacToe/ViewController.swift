@@ -1,7 +1,6 @@
 //
 //  ViewController.swift
 //  TicTacToe
-//
 //  Created by PU2025-17 on 21/04/25.
 //
 
@@ -35,14 +34,25 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // initialize the board
         initBoard()
     }
 
     func initBoard() {
-        board.append(contentsOf: [a1, a2, a3, b1, b2, b3, c1, c2, c3])
+        // add buttons to board manually
+        board.append(a1)
+        board.append(a2)
+        board.append(a3)
+        board.append(b1)
+        board.append(b2)
+        board.append(b3)
+        board.append(c1)
+        board.append(c2)
+        board.append(c3)
     }
 
     @IBAction func boardTapAction(_ sender: UIButton) {
+        // handle button tap and check for victory or draw
         addToBoard(sender)
 
         if let winButtons = checkForVictory(NOUGHT) {
@@ -57,24 +67,21 @@ class ViewController: UIViewController {
     }
 
     @IBAction func tapInfoButton(_ sender: UIButton) {
+        // show game information
         let ac = UIAlertController(title: "Information", message: "This is a Tic-Tac-Toe game. The game is played with X and O symbols. The first player to get three in a row wins!\n\nDeveloped by FPS team", preferredStyle: .alert)
-            
-        // Add a close button
         ac.addAction(UIAlertAction(title: "Thanks for wonderful game!", style: .default, handler: nil))
-        
-        // Present the alert
         present(ac, animated: true)
     }
+
     @IBAction func theyGottaBeJoking(_ sender: UIButton) {
+        // show quit confirmation
         let ac = UIAlertController(title: "You wanna quit?", message: "You can't just quit, you can't just give up, okay? You gotta fight for it, till the end! Actually, there is no end.", preferredStyle: .alert)
-            
-        // Add a close button
         ac.addAction(UIAlertAction(title: "I'm not going to give up", style: .default, handler: nil))
-        
-        // Present the alert
         present(ac, animated: true)
     }
+
     func resultAlert(title: String) {
+        // show result alert and reset board
         let ac = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: { _ in
             self.resetBoard()
@@ -83,6 +90,7 @@ class ViewController: UIViewController {
     }
 
     func resetBoard() {
+        // reset all buttons and turn
         for button in board {
             button.setTitle(nil, for: .normal)
             button.isEnabled = true
@@ -105,18 +113,33 @@ class ViewController: UIViewController {
     }
 
     func isFullBoard() -> Bool {
-        return !board.contains(where: { $0.title(for: .normal) == nil })
+        // check if any button is empty
+        for button in board {
+            if button.title(for: .normal) == nil {
+                return false
+            }
+        }
+        return true
     }
 
     func checkForVictory(_ symbol: String) -> [UIButton]? {
+        // define all winning combinations
         let winningCombos: [[UIButton]] = [
-            [a1, a2, a3], [b1, b2, b3], [c1, c2, c3], // Rows
-            [a1, b1, c1], [a2, b2, c2], [a3, b3, c3], // Columns
-            [a1, b2, c3], [a3, b2, c1]                // Diagonals
+            [a1, a2, a3], [b1, b2, b3], [c1, c2, c3], // rows
+            [a1, b1, c1], [a2, b2, c2], [a3, b3, c3], // columns
+            [a1, b2, c3], [a3, b2, c1]                // diagonals
         ]
 
         for combo in winningCombos {
-            if combo.allSatisfy({ $0.title(for: .normal) == symbol }) {
+            // check if all buttons in combo match symbol
+            var allMatch = true
+            for button in combo {
+                if button.title(for: .normal) != symbol {
+                    allMatch = false
+                    break
+                }
+            }
+            if allMatch {
                 return combo
             }
         }
@@ -124,6 +147,7 @@ class ViewController: UIViewController {
     }
 
     func drawWinningLine(over buttons: [UIButton], for symbol: String) {
+        // draw a line over the winning buttons
         guard let first = buttons.first, let last = buttons.last else { return }
 
         let start = first.superview!.convert(first.center, to: view)
@@ -137,7 +161,12 @@ class ViewController: UIViewController {
         line.path = path.cgPath
         line.lineWidth = 5.0
         line.lineCap = .round
-        line.strokeColor = (symbol == NOUGHT ? UIColor.black : UIColor.red).cgColor
+        
+        if symbol == NOUGHT {
+            line.strokeColor = UIColor.black.cgColor
+        } else {
+            line.strokeColor = UIColor.red.cgColor
+        }
 
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.fromValue = 0
@@ -150,7 +179,10 @@ class ViewController: UIViewController {
     }
 
     func addToBoard(_ sender: UIButton) {
-        guard sender.title(for: .normal) == nil else { return }
+        // add symbol to button and update turn
+        if sender.title(for: .normal) != nil {
+            return
+        }
 
         sender.isEnabled = false
 
