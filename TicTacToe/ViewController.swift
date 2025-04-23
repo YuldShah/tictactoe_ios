@@ -18,6 +18,8 @@ class ViewController: UIViewController {
 
     var NOUGHT = "O"
     var CROSS = "X"
+    var noughtsScore = 0
+    var crossesScore = 0
     var board = [UIButton]()
     var winningLine: CAShapeLayer?
 
@@ -55,14 +57,24 @@ class ViewController: UIViewController {
         // handle button tap and check for victory or draw
         addToBoard(sender)
 
-        if let winButtons = checkForVictory(NOUGHT) {
-            drawWinningLine(over: winButtons, for: NOUGHT)
-            resultAlert(title: "Noughts Win!")
-        } else if let winButtons = checkForVictory(CROSS) {
-            drawWinningLine(over: winButtons, for: CROSS)
-            resultAlert(title: "Crosses Win!")
-        } else if isFullBoard() {
-            resultAlert(title: "Draw")
+        let noughtWinButtons = checkForVictory(NOUGHT)
+        if noughtWinButtons != nil {
+            drawWinningLine(over: noughtWinButtons!, for: NOUGHT)
+            noughtsScore += 1
+            resultAlert(title: "Noughts Win!\nScore: Noughts - \(noughtsScore), Crosses - \(crossesScore)")
+            return
+        }
+
+        let crossWinButtons = checkForVictory(CROSS)
+        if crossWinButtons != nil {
+            drawWinningLine(over: crossWinButtons!, for: CROSS)
+            crossesScore += 1
+            resultAlert(title: "Crosses Win!\nScore: Noughts - \(noughtsScore), Crosses - \(crossesScore)")
+            return
+        }
+
+        if isFullBoard() {
+            resultAlert(title: "Draw\nScore: Noughts - \(noughtsScore), Crosses - \(crossesScore)")
         }
     }
 
@@ -148,7 +160,11 @@ class ViewController: UIViewController {
 
     func drawWinningLine(over buttons: [UIButton], for symbol: String) {
         // draw a line over the winning buttons
-        guard let first = buttons.first, let last = buttons.last else { return }
+        if buttons.first == nil || buttons.last == nil {
+            return
+        }
+        let first = buttons.first!
+        let last = buttons.last!
 
         let start = first.superview!.convert(first.center, to: view)
         let end = last.superview!.convert(last.center, to: view)
